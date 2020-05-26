@@ -1,0 +1,26 @@
+def suma(a,b)inicio
+	ent suma = a + b;
+
+    print(suma);
+
+	si (suma => 7)inicio
+		
+		print("Si es """ mayor a 7");
+	fin
+
+	mientras(suma <= 6)inicio
+		suma --;
+		print(suma)
+	fin
+
+<=
+	
+	devolver suma
+fin
+suma(10, 15) 
+suma(10.5, 15.7867856) 
+suma(10.5534565436634564546, 15.64564664545356678) 
+
+>=
+<>
+verdadero
