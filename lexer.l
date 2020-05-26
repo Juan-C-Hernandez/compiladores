@@ -42,6 +42,15 @@ ebol (y|no|o)
 "verdadero" {return VERDADERO;}
 "falso" {return FALSO;}
 "def"   {return DEF;}
+";"	{return PYC;}
+","	{return COMA;}
+"["	{return CIZQ;}
+"]"	{return CDER;}
+"("	{return PIZQ;}
+")"	{return PDER;}
+":"	{return DOSP;}
+":="	{return ASIG;}
+"."	{return PUNTO;}
 {ebol}  {return EBOL;}
 {num}   {return NUM;}
 {cadena}    {return CADENA;}

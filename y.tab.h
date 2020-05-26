@@ -26,9 +26,14 @@
 #define NUM 23
 #define CADENA 24
 #define ID 25
-#define SP 26
-#define OPREL 27
-#define OPARIT 28
-#define EBOL 29
+#define PYC 26
+#define COMA 27
+#define CIZQ 28
+#define CDER 29
+#define PIZQ 30
+#define PDER 31
+#define DOSP 32
+#define ASIG 33
+#define PUNTO 34
 
 #endif
