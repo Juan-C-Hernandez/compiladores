@@ -35,5 +35,19 @@
 #define DOSP 32
 #define ASIG 33
 #define PUNTO 34
+#define SUMA 35
+#define RESTA 36
+#define DIV 37
+#define MULT 38
+#define MOD 39
+#define MENOR 40
+#define MAYOR 41
+#define IGUAL 42
+#define DIF 43
+#define MENOI 44
+#define MAYOI 45
+#define Y 46
+#define O 47
+#define NO 48
 
 #endif

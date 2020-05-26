@@ -12,9 +12,6 @@ num \-?{ent}|{real}|{dreal}
 letra [a-zA-Z]
 cadena \"[^\"]*\"|\'[^\']*\'
 id {letra}(_|{letra}|{digito})*
-oprel [<>=]
-oparit [+\-*/%]
-ebol (y|no|o)
 
 %option noyywrap
 
@@ -50,14 +47,24 @@ ebol (y|no|o)
 ":"	{return DOSP;}
 ":="	{return ASIG;}
 "."	{return PUNTO;}
-{ebol}  {return EBOL;}
+"+"	{return SUMA;}
+"-"	{return RESTA;}
+"/"	{return DIV;}
+"*"	{return MULT;}
+"%"	{return MOD;}
+"<"	{return MENOR;}
+">"	{return MAYOR;}
+"="	{return IGUAL;}
+"<>"	{return DIF;}
+"<="	{return MENOI;}
+">="	{return MAYOI;}
+"y"	{return Y;}
+"o"	{return O;}
+"no"	{return NO;}
 {num}   {return NUM;}
 {cadena}    {return CADENA;}
 {id}    {return ID;}
-{sp}    {return SP;}
-{oprel} {return OPREL;}
-{oparit}    {return OPARIT;}
-[ \t]   {}
+[ \t\r\n]+   {}
 .      {printf("Error léxico %s\n", yytext);}
 
 %%
