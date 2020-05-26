@@ -12,7 +12,6 @@ num \-?{ent}|{real}|{dreal}
 letra [a-zA-Z]
 cadena \"[^\"]*\"|\'[^\']*\'
 id {letra}(_|{letra}|{digito})*
-sp [;\[\],\(\):=:\.]
 oprel [<>=]
 oparit [+\-*/%]
 ebol (y|no|o)
