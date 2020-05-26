@@ -10,7 +10,7 @@ real {ent}?\.{ent}|{ent}\.{ent}?
 dreal {real}d
 num \-?{ent}|{real}|{dreal}
 letra [a-zA-Z]
-cadena \"[^\"]*\"|\'~(\')*\'
+cadena \"[^\"]*\"|\'[^\']*\'
 id {letra}(_|{letra}|{digito})*
 sp [;\[\],\(\):=:\.]
 oprel [<>=]
