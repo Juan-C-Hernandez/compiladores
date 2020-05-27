@@ -1,0 +1,4 @@
+ent a;
+real b;
+dreal c;
+car d;
