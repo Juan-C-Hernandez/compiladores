@@ -31,10 +31,9 @@ void yyerror(char *s);
 
 %%
 /* Seccioón del Esquema de traducción */
-programa: declaraciones funciones
+programa: declaraciones funciones;
 
-declaraciones: tipo lista_var PYC declaraciones
-	| tipo_registro lista_var; PYC declaraciones | ;
+declaraciones: tipo lista_var PYC declaraciones | tipo_registro lista_var PYC declaraciones |;
 
 tipo_registro: ESTRUCTURA INICIO declaraciones FIN;
 
@@ -66,7 +65,7 @@ sentencia: SI e_bol ENTONCES sentencia FIN
 	| HACER sentencia MIENTRAS e_bol PYC
 	| SEGUN PIZQ variable PDER HACER casos predeterminado FIN
 	| variable ASIG expresion PYC
-	| ESCRIBIR expresion PYC;
+	| ESCRIBIR expresion PYC
 	| LEER variable PYC
 	| DEVOLVER PYC
 	| DEVOLVER expresion PYC
@@ -106,10 +105,9 @@ variable: ID variable_comp;
 
 variable_comp: dato_est_sim | arreglo | PIZQ parametros PDER;
 
-dato_est_sim: dato_est_sim PUNTO | ;
+dato_est_sim: dato_est_sim PUNTO ID| ;
 
-arreglo: CIZQ expresion CDER
-	arreglo CIZQ expresion CDER;
+arreglo: CIZQ expresion CDER | arreglo CIZQ expresion CDER;
 	
 parametros: lista_parm | ;
 

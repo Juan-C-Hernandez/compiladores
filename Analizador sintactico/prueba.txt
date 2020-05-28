@@ -2,3 +2,8 @@ ent a;
 real b;
 dreal c;
 car d;
+def suma(ent a, ent b)inicio
+	ent a = 5;
+	ent b = 6;
+	devolver a+b
+fin
