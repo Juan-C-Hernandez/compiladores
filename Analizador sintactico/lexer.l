@@ -36,6 +36,7 @@ id {letra}(_|{letra}|{digito})*
 "devolver"  {return DEVOLVER;}
 "terminar"  {return TERMINAR;}
 "caso"  {return CASO;}
+"pred" {return PRED;}
 "verdadero" {return VERDADERO;}
 "falso" {return FALSO;}
 "def"   {return DEF;}
