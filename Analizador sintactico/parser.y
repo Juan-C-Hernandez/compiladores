@@ -3,6 +3,7 @@
 #include <stdio.h>
 extern int yylex();
 extern char *yytext;
+extern int yylineno;
 void yyerror(char *s);
 %}
 
@@ -33,7 +34,8 @@ void yyerror(char *s);
 /* Seccioón del Esquema de traducción */
 programa: declaraciones funciones;
 
-declaraciones: tipo lista_var PYC declaraciones | tipo_registro lista_var PYC declaraciones |;
+declaraciones: tipo lista_var PYC declaraciones
+	| tipo_registro lista_var PYC declaraciones | ;
 
 tipo_registro: ESTRUCTURA INICIO declaraciones FIN;
 
@@ -107,7 +109,8 @@ variable_comp: dato_est_sim | arreglo | PIZQ parametros PDER;
 
 dato_est_sim: dato_est_sim PUNTO ID| ;
 
-arreglo: CIZQ expresion CDER | arreglo CIZQ expresion CDER;
+arreglo: CIZQ expresion CDER
+	| arreglo CIZQ expresion CDER;
 	
 parametros: lista_parm | ;
 
@@ -116,5 +119,5 @@ lista_parm: lista_parm COMA expresion | expresion;
 %%
 /* Sección de código de usuario */
 void yyerror(char *s){
-	printf("%s\t%s\n", s, yytext);
+	printf("%s\t'%s' : %d\n", s, yytext, yylineno);
 }

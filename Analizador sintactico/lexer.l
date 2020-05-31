@@ -14,6 +14,8 @@ cadena \"[^\"]*\"|\'[^\']*\'
 id {letra}(_|{letra}|{digito})*
 
 %option noyywrap
+%option yylineno
+
 %%
 "estructura"    {return ESTRUCTURA;}
 "inicio"    {return INICIO;}

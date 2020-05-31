@@ -16,7 +16,10 @@ int main(int argc, char** argv){
     }
 
     yyin = f;
-    yyparse();
-	printf("No se encontraron errores sintacticos\n");
+    int ret;
+    ret = yyparse();
+	if(!ret){
+		printf("No se econtraron errores de sintaxis\n");
+	}
     fclose(yyin);
 }
