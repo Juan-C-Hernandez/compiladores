@@ -1,9 +1,10 @@
-ent a;
+ent a, g, fsd, s;
 real b;
 dreal c;
-car d;
-def suma(ent a, ent b)inicio
-	ent a = 5;
-	ent b = 6;
-	devolver a+b
-fin
+car sdf;
+sin lklf;
+ent[3][5][7] f;
+estructura
+inicio
+ent d, g, v, sd;
+fin estr;
