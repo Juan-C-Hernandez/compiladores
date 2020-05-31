@@ -43,7 +43,7 @@ tipo: base tipo_arreglo;
 
 base: ENT | REAL | DREAL | CAR | SIN;
 
-tipo_arreglo: PIZQ NUM PDER tipo_arreglo | ;
+tipo_arreglo: CIZQ NUM CDER tipo_arreglo | ;
 
 lista_var: lista_var COMA ID | ID;
 
