@@ -17,5 +17,6 @@ int main(int argc, char** argv){
 
     yyin = f;
     yyparse();
+	printf("No se encontraron errores sintacticos\n");
     fclose(yyin);
 }
