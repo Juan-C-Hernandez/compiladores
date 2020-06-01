@@ -1,0 +1,98 @@
+ent a, g, fsd, s;
+real b;
+dreal c;
+car sdf;
+sin lklf;
+ent[3][5][7] f;
+estructura
+inicio
+ent d, g, v, sd;
+fin estr;
+
+def ent funcion(sin)
+inicio
+ent variable;
+sin otra;
+devolver;
+fin
+
+def sin funparam(ent a, real b)
+inicio
+devolver;
+fin
+
+def car paramarreglo(ent [][] arreglo, ent a, sin otro)
+inicio
+devolver;
+fin
+
+def sin pruebasentencias(sin)
+inicio
+escribir "cadena";
+escribir 2323;
+devolver "cadena";
+fin
+
+def sin terminar_prueba(sin)
+inicio
+terminar;
+fin
+
+def sin anidado(sin)
+inicio
+ent a;
+dreal b;
+inicio
+escribir 34;
+escribir "dads";
+fin
+fin
+
+def sin variable(sin)
+inicio
+var := 324;
+var2[34]["ca"] := 324;
+var3.atributo := "casfsfwe";
+var4 := funcion();
+var5 := funcion(234, "dsf");
+fin
+
+def sin prueba_if(sin)
+inicio
+si verdadero entonces
+escribir "afds";
+fin
+si falso entonces
+leer var;
+sino
+terminar;
+fin
+fin
+
+def sin prueba_while(sin)
+inicio
+mientras verdadero hacer
+escribir "sfaas";
+fin
+hacer
+escribir 233;
+mientras falso;
+fin
+
+def sin prueba_switch(sin)
+inicio
+segun(var[2]["da"]) hacer
+caso 1: escribir 234;
+caso 2: leer var;
+caso 3: terminar;
+fin
+segun(var.at) hacer
+caso 1: escribir 234;
+pred: escribir 234;
+fin
+fin
+
+def sin prueba_exp(sin)
+inicio
+a := 23 + 32;
+fin
