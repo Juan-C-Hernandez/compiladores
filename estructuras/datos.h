@@ -1,11 +1,13 @@
 typedef struct arg ARG;
 
-struct args{
+struct arg{
     int arg;
-    ARG next;
+    ARG *next;
 };
 
-typedef struct args{
+typedef struct args ARGS;
+
+struct args{
     ARG *head;
     ARG *tail;
     int num; // Número de elementos en la lista
@@ -16,7 +18,7 @@ typedef struct sym SYM;
 struct sym{
     int dir; // dirección para la variable
     int tipo; // tipo como indice a la tabla de tipos
-    char id[33] // identificador
+    char id[33]; // identificador
     ARGS *args; // lista de argumentos
     int num; // numero de argumentos
     int var; // tipo de variable
