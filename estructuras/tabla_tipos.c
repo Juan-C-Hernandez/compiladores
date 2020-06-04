@@ -113,10 +113,16 @@ char *getNombre(TYPTAB *t, int id){
 // imprime en pantalla la tabla de tipos
 void print_tab(TYPTAB *t){
 	int i;
-	for(i = 0; i < t->num; i++){
-	//	--------------------------
+	TYP *tmp = t->head;
+	printf("--------------------------------------------------\n");
+	printf("|%10s|%13s|%5s|%17s|\n", "id", "nombre", "tam", "siguiente");
+	printf("--------------------------------------------------\n");
+	
+	for(i = 0; i < t; i++){
+		printf("|%10d|%13s|%5zu|%17p|\n", tmp->id, tmp->nombre, tmp->tam, tmp->next);
+		printf("--------------------------------------------------\n");
+		tmp = tmp->next;
 	}
-}
 
 TYP *busca_typ(TYP *t, int id){
 	if(t == NULL){
