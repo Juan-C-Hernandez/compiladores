@@ -4,6 +4,7 @@
 
 #include <stdlib.h>
 #include "tabla_tipos.h"
+#include <stdio.h>
 
 // Agrega al final de la tabla un nuevo tipo
 void append_type(TYPTAB *TT, TYP t){
@@ -33,6 +34,9 @@ void clear_type_tab(TYPTAB *tt){
 // Reserva memoria para la pila
 TSTACK *init_type_tab_stack(){
 	TSTACK *stack = malloc(sizeof *stack);
+	if(!stack){
+	    return NULL;
+    }
 	stack->top = stack->tail = NULL;
 	return stack;
 }
@@ -41,6 +45,9 @@ TSTACK *init_type_tab_stack(){
 // Reserva memoria para una tabla de tipos de inserta los tipos nativos
 TYPTAB *init_type_tab(){
 	TYPTAB *tabla_tipos = malloc(sizeof *tabla_tipos);
+	if(!tabla_tipos){
+	    return NULL;
+    }
 	TYP *tipo_nativo = init_type();
 	/*	TIPOS NATIVOS	
 	
@@ -53,6 +60,9 @@ TYPTAB *init_type_tab(){
 //Reserva memoria para un tipo
 TYP *init_type(){
 	TYP *tipo = malloc(sizeof *tipo);
+	if(!tipo){
+	    return NULL;
+    }
 	tipo->next = NULL;
 	return tipo;
 }
@@ -118,11 +128,12 @@ void print_tab(TYPTAB *t){
 	printf("|%10s|%13s|%5s|%17s|\n", "id", "nombre", "tam", "siguiente");
 	printf("--------------------------------------------------\n");
 	
-	for(i = 0; i < t; i++){
+	for(i = 0; i < t->num; i++){
 		printf("|%10d|%13s|%5zu|%17p|\n", tmp->id, tmp->nombre, tmp->tam, tmp->next);
 		printf("--------------------------------------------------\n");
 		tmp = tmp->next;
 	}
+}
 
 TYP *busca_typ(TYP *t, int id){
 	if(t == NULL){
