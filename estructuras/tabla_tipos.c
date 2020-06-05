@@ -7,14 +7,16 @@
 #include <stdio.h>
 
 // Agrega al final de la tabla un nuevo tipo
-void append_type(TYPTAB *TT, TYP t){
+void append_type(TYPTAB *TT, TYP *t){
+    /* FUNCIONA */
 	if(TT->num == 0){
-		*(TT->head) = t;
-		TT->tail = TT->head;
-	}
-	*(TT->tail->next) = t;
-	*(TT->tail) = t;
-	
+	   TT->head = t;
+	   TT->tail = TT->head;
+	} else{
+        TT->tail->next = t;
+        TT->tail = t;
+    }
+    
 	TT->tail->next = NULL;
 	TT->num++;
 }
@@ -121,20 +123,22 @@ char *getNombre(TYPTAB *t, int id){
 }
 
 int getNum(TYPTAB *T){
+    /* FUNCIONA */
     return T->num;
 }
 
 // imprime en pantalla la tabla de tipos
 void print_tab(TYPTAB *t){
+    /* FUNCIONA */
 	int i;
 	TYP *tmp = t->head;
-	printf("--------------------------------------------------\n");
-	printf("|%10s|%13s|%5s|%17s|\n", "id", "nombre", "tam", "siguiente");
-	printf("--------------------------------------------------\n");
+	printf("--------------------------------------------------------------------\n");
+	printf("|%10s|%13s|%5s|%17s|%17s|\n", "id", "nombre", "tam", "direccion", "siguiente");
+	printf("--------------------------------------------------------------------\n");
 	
 	for(i = 0; i < t->num; i++){
-		printf("|%10d|%13s|%5zu|%17p|\n", tmp->id, tmp->nombre, tmp->tam, tmp->next);
-		printf("--------------------------------------------------\n");
+		printf("|%10d|%13s|%5zu|%17p|%17p|\n", tmp->id, tmp->nombre, tmp->tam, tmp, tmp->next);
+		printf("--------------------------------------------------------------------\n");
 		tmp = tmp->next;
 	}
 }
