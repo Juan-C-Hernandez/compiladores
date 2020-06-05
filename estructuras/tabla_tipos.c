@@ -48,11 +48,11 @@ TYPTAB *init_type_tab(){
 	if(!tabla_tipos){
 	    return NULL;
     }
-	TYP *tipo_nativo = init_type();
 	/*	TIPOS NATIVOS	
-	
+	TYP *tipo_nativo = init_type();
 	*/
 	tabla_tipos->next = NULL;
+	tabla_tipos->num = 0;
 	return tabla_tipos;
 }
 
@@ -118,6 +118,10 @@ char *getNombre(TYPTAB *t, int id){
 	}*/
 	
 	return tmp->nombre;
+}
+
+int getNum(TYPTAB *T){
+    return T->num;
 }
 
 // imprime en pantalla la tabla de tipos
