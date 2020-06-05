@@ -141,9 +141,12 @@ void print_tab(TYPTAB *t){
 		printf("--------------------------------------------------------------------\n");
 		tmp = tmp->next;
 	}
+	printf("\n");
 }
 
+// Busca ID en una lista ligada
 TYP *busca_typ(TYP *t, int id){
+    /* FUNCIONA */
 	if(t == NULL){
 		return NULL;
 	}
