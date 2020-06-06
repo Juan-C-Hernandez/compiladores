@@ -32,6 +32,18 @@ void clear_type_tab(TYPTAB *tt){
 	}
 }
 
+// ingresa una tabla a la pila de tabla de tipos
+void push_st(TSTACK *s, TYPTAB *tt){
+    /* FUNCIONA */
+    if(!s->tail){
+        s->tail = s->top = tt;
+    } else{
+        s->top->next = tt;
+        s->top = tt;
+    }
+    
+    s->top->next = NULL;
+}
 
 // Reserva memoria para la pila
 TSTACK *init_type_tab_stack(){
@@ -94,9 +106,10 @@ void finish_typ(TYP *t){
 
 // Retorna el tamaño de un tipo
 int getTam(TYPTAB *t, int id){
+    /* FUNCIONA */
 	TYP *tmp = busca_typ(t->head, id);
 	if(!tmp){
-		return -1;
+		return 0;
 	}
 	
 	return tmp->tam;
@@ -114,10 +127,11 @@ TB getTipoBase(TYPTAB *t, int id){
 
 // Retorna el nombre de un tipo
 char *getNombre(TYPTAB *t, int id){
+    /* FUNCIONA */
 	TYP *tmp = busca_typ(t->head, id);
-	/*if(!tmp){
-		return -1;
-	}*/
+	if(!tmp){
+		return '\0';
+	}
 	
 	return tmp->nombre;
 }
@@ -137,10 +151,25 @@ void print_tab(TYPTAB *t){
 	printf("--------------------------------------------------------------------\n");
 	
 	for(i = 0; i < t->num; i++){
-		printf("|%10d|%13s|%5zu|%17p|%17p|\n", tmp->id, tmp->nombre, tmp->tam, tmp, tmp->next);
+		printf("|%10d|%13s|%5zu|%17p|", tmp->id, tmp->nombre, tmp->tam, tmp);
+	   if(!tmp->next){
+            printf("%17s|\n", "NULL");
+        } else{
+            printf("%17p|\n", tmp->next);
+        }
 		printf("--------------------------------------------------------------------\n");
 		tmp = tmp->next;
 	}
+	//printf("-------------------------------------\n");
+    printf("|%17s|%17s|\n", "direccion", "siguiente");
+    printf("-------------------------------------\n");
+    printf("|%17p|", t);
+    if(!t->next){
+        printf("%17s|\n", "NULL");
+    } else{
+        printf("%17p|\n", t->next);
+    }
+    printf("-------------------------------------\n");
 	printf("\n");
 }
 
