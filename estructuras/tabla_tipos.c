@@ -24,18 +24,23 @@ void append_type(TYPTAB *TT, TYP *t){
 // Deja vacia la tabla
 void clear_type_tab(TYPTAB *tt){
 	if(tt->num > 0){
-		finish_typ(tt->head);
-		tt->tail = tt->head;
+	    finish_typ_tab(tt);
+		tt->tail = tt->head = NULL;
 		tt->num = 0;
 		finish_typ_tab(tt->next);
 		tt->next = NULL;
 	}
 }
 
+/*
+// Ejecuta un pop sobre la pila de tablas de tipos
+TYPTAB pop_st(TSTACK *s){
+    TYPTAB tmp = *
+}
+
 // ingresa una tabla a la pila de tabla de tipos
 void push_st(TSTACK *s, TYPTAB *tt){
-    /* FUNCIONA */
-    if(!s->tail){
+    if(!s->top){
         s->tail = s->top = tt;
     } else{
         s->top->next = tt;
@@ -44,6 +49,7 @@ void push_st(TSTACK *s, TYPTAB *tt){
     
     s->top->next = NULL;
 }
+*/
 
 // Reserva memoria para la pila
 TSTACK *init_type_tab_stack(){
@@ -62,9 +68,12 @@ TYPTAB *init_type_tab(){
 	if(!tabla_tipos){
 	    return NULL;
     }
+    
 	/*	TIPOS NATIVOS	
 	TYP *tipo_nativo = init_type();
 	*/
+	
+    //tabla_tipos->head = tabla_tipos->tail = NULL;
 	tabla_tipos->next = NULL;
 	tabla_tipos->num = 0;
 	return tabla_tipos;
@@ -87,21 +96,25 @@ void finish_typ_tab_stack(TSTACK *s){
 	free(s);
 }
 
-// Libera memoria para una tabla de tipos
+// Libera memoria para una tabla de tipos y las tablas siguientes
 void finish_typ_tab(TYPTAB *tt){
-	if(tt->next == NULL){
-		finish_typ(tt->head);
-		free(tt);
+	if(!tt){
+		return;
 	}
+	
 	finish_typ_tab(tt->next);
+	finish_typ(tt->head);
+	free(tt);
 }
 
-// libera memoria para un tipo
+// libera memoria para un tipo y los tipos siguientes
 void finish_typ(TYP *t){
-	if(t->next == NULL){
-		free(t);
+	if(!t){
+	    return;
 	}
+	
 	finish_typ(t->next);
+    free(t);
 }
 
 // Retorna el tamaño de un tipo
@@ -150,26 +163,32 @@ void print_tab(TYPTAB *t){
 	printf("|%10s|%13s|%5s|%17s|%17s|\n", "id", "nombre", "tam", "direccion", "siguiente");
 	printf("--------------------------------------------------------------------\n");
 	
-	for(i = 0; i < t->num; i++){
-		printf("|%10d|%13s|%5zu|%17p|", tmp->id, tmp->nombre, tmp->tam, tmp);
-	   if(!tmp->next){
-            printf("%17s|\n", "NULL");
-        } else{
-            printf("%17p|\n", tmp->next);
-        }
-		printf("--------------------------------------------------------------------\n");
+	if(!tmp){
+	    printf("|%66s|\n", "La lista esta vacia");
+	    printf("--------------------------------------------------------------------\n");
+    } else{
+        for(i = 0; i < t->num; i++){
+            printf("|%10d|%13s|%5zu|%17p|", tmp->id, tmp->nombre, tmp->tam, tmp);
+            if(!tmp->next){
+                printf("%17s|\n", "NULL");
+            } else{
+                printf("%17p|\n", tmp->next);
+            }
+		  printf("--------------------------------------------------------------------\n");
 		tmp = tmp->next;
-	}
-	//printf("-------------------------------------\n");
-    printf("|%17s|%17s|\n", "direccion", "siguiente");
-    printf("-------------------------------------\n");
-    printf("|%17p|", t);
+	   }
+    }
+	
+	printf("-------------------------------------------\n");
+    printf("|%5s|%17s|%17s|\n", "num", "direccion", "siguiente");
+    printf("-------------------------------------------\n");
+    printf("|%5d|%17p|",t->num, t);
     if(!t->next){
         printf("%17s|\n", "NULL");
     } else{
         printf("%17p|\n", t->next);
     }
-    printf("-------------------------------------\n");
+    printf("-------------------------------------------\n");
 	printf("\n");
 }
 
