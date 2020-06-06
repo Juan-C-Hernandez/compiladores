@@ -43,11 +43,10 @@ void push_st(TSTACK *s, TYPTAB *tt){
     if(!s->top){
         s->tail = s->top = tt;
     } else{
-        s->top->next = tt;
+        TSTACK tmp = s->top;
         s->top = tt;
+        s->top->next = tmp;
     }
-    
-    s->top->next = NULL;
 }
 
 // Reserva memoria para la pila
