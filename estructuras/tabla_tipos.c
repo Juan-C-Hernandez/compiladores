@@ -43,7 +43,7 @@ void push_st(TSTACK *s, TYPTAB *tt){
     if(!s->top){
         s->tail = s->top = tt;
     } else{
-        TSTACK tmp = s->top;
+        TYPTAB *tmp = s->top;
         s->top = tt;
         s->top->next = tmp;
     }

@@ -17,7 +17,7 @@ void print_typ(TYP *tipo){
 }
 
 void print_stack(TSTACK *s){
-    TYPTAB *tmp = s->tail;
+    TYPTAB *tmp = s->top;
     if(!tmp){
         printf("Nada que imprimir\n");
     } else{
