@@ -194,4 +194,10 @@ int main(int arc, char **argv){
     print_stack(pila);
     printf("\n");
     
+    printf("Pop a la pila\n");
+    TYPTAB popped = pop_st(pila);
+    printf("Imprimiendo pila despues de pop\n");
+    print_stack(pila);
+    printf("\n");
+    print_tab(&popped);
 }

@@ -31,11 +31,17 @@ void clear_type_tab(TYPTAB *tt){
 	}
 }
 
-/*
+
 // Ejecuta un pop sobre la pila de tablas de tipos
 TYPTAB pop_st(TSTACK *s){
-    TYPTAB tmp = *
-}*/
+    TYPTAB *tmp = s->top;
+    tmp->next = NULL;
+    TYPTAB tmp_valor = *tmp;
+    s->top = s->top->next;
+    finish_typ_tab(tmp);
+    return tmp_valor;
+    
+}
 
 // ingresa una tabla a la pila de tabla de tipos
 void push_st(TSTACK *s, TYPTAB *tt){
