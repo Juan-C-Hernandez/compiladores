@@ -42,7 +42,6 @@ TYPTAB pop_st(TSTACK *s){
 
 // ingresa una tabla a la pila de tabla de tipos
 void push_st(TSTACK *s, TYPTAB *tt){
-    /* ---------------------------- */
     if(!s->top){
         s->tail = s->top = tt;
     } else{
