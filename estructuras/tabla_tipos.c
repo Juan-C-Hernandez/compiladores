@@ -94,6 +94,7 @@ TYP *init_type(){
 
 // Libera memoria para la pila
 void finish_typ_tab_stack(TSTACK *s){
+	/* ---------------------- */
 	finish_typ_tab(s->tail);
 	free(s);
 }
