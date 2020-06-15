@@ -29,7 +29,6 @@ void clear_type_tab(TYPTAB *tt){
 	}
 }
 
-
 // Ejecuta un pop sobre la pila de tablas de tipos
 TYPTAB pop_st(TSTACK *s){
     TYPTAB *tmp = s->top;
@@ -81,7 +80,6 @@ TYPTAB *init_type_tab(){
 	return tabla_tipos;
 }
 
-
 //Reserva memoria para un tipo
 TYP *init_type(){
 	TYP *tipo = malloc(sizeof *tipo);
@@ -94,8 +92,7 @@ TYP *init_type(){
 
 // Libera memoria para la pila
 void finish_typ_tab_stack(TSTACK *s){
-	/* ---------------------- */
-	finish_typ_tab(s->tail);
+	finish_typ_tab(s->top);
 	free(s);
 }
 
@@ -104,7 +101,7 @@ void finish_typ_tab(TYPTAB *tt){
 	if(!tt){
 		return;
 	}
-	
+
 	finish_typ_tab(tt->next);
 	finish_typ(tt->head);
 	free(tt);
