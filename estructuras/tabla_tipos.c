@@ -8,7 +8,6 @@
 
 // Agrega al final de la tabla un nuevo tipo
 void append_type(TYPTAB *TT, TYP *t){
-    /* FUNCIONA */
 	if(TT->num == 0){
 	   TT->head = t;
 	   TT->tail = TT->head;
@@ -23,7 +22,6 @@ void append_type(TYPTAB *TT, TYP *t){
 
 // Deja vacia la tabla
 void clear_type_tab(TYPTAB *tt){
-    /* FUNCIONA */
 	if(tt->num > 0){
 	    finish_typ(tt->head);
 		tt->tail = tt->head = NULL;
@@ -45,7 +43,7 @@ TYPTAB pop_st(TSTACK *s){
 
 // ingresa una tabla a la pila de tabla de tipos
 void push_st(TSTACK *s, TYPTAB *tt){
-    /* CORREGIR */
+    /* ---------------------------- */
     if(!s->top){
         s->tail = s->top = tt;
     } else{
@@ -57,7 +55,6 @@ void push_st(TSTACK *s, TYPTAB *tt){
 
 // Reserva memoria para la pila
 TSTACK *init_type_tab_stack(){
-    /* FUNCIONA */
 	TSTACK *stack = malloc(sizeof *stack);
 	if(!stack){
 	    return NULL;
@@ -69,7 +66,6 @@ TSTACK *init_type_tab_stack(){
 
 // Reserva memoria para una tabla de tipos de inserta los tipos nativos
 TYPTAB *init_type_tab(){
-    /* FUNCIONA */
 	TYPTAB *tabla_tipos = malloc(sizeof *tabla_tipos);
 	if(!tabla_tipos){
 	    return NULL;
@@ -88,7 +84,6 @@ TYPTAB *init_type_tab(){
 
 //Reserva memoria para un tipo
 TYP *init_type(){
-    /* FUNCIONA */
 	TYP *tipo = malloc(sizeof *tipo);
 	if(!tipo){
 	    return NULL;
@@ -99,14 +94,12 @@ TYP *init_type(){
 
 // Libera memoria para la pila
 void finish_typ_tab_stack(TSTACK *s){
-    /* +++++++++++++++++++++++++++++++++++++++++++ */
 	finish_typ_tab(s->tail);
 	free(s);
 }
 
 // Libera memoria para una tabla de tipos y las tablas siguientes
 void finish_typ_tab(TYPTAB *tt){
-    /* +++++++++++++++++++++++++++++++++++++++++++ */
 	if(!tt){
 		return;
 	}
@@ -118,7 +111,6 @@ void finish_typ_tab(TYPTAB *tt){
 
 // libera memoria para un tipo y los tipos siguientes
 void finish_typ(TYP *t){
-    /* +++++++++++++++++++++++++++++++++++++++++++ */
 	if(!t){
 	    return;
 	}
@@ -129,7 +121,6 @@ void finish_typ(TYP *t){
 
 // Retorna el tamaño de un tipo
 int getTam(TYPTAB *t, int id){
-    /* FUNCIONA */
 	TYP *tmp = busca_typ(t->head, id);
 	if(!tmp){
 		return 0;
@@ -150,7 +141,6 @@ TB getTipoBase(TYPTAB *t, int id){
 
 // Retorna el nombre de un tipo
 char *getNombre(TYPTAB *t, int id){
-    /* FUNCIONA */
 	TYP *tmp = busca_typ(t->head, id);
 	if(!tmp){
 		return '\0';
@@ -160,13 +150,11 @@ char *getNombre(TYPTAB *t, int id){
 }
 
 int getNum(TYPTAB *T){
-    /* FUNCIONA */
     return T->num;
 }
 
 // imprime en pantalla la tabla de tipos
 void print_tab(TYPTAB *t){
-    /* FUNCIONA */
 	int i;
 	TYP *tmp = t->head;
 	printf("--------------------------------------------------------------------\n");
@@ -204,8 +192,7 @@ void print_tab(TYPTAB *t){
 
 // Busca ID en una lista ligada
 TYP *busca_typ(TYP *t, int id){
-    /* FUNCIONA */
-	if(t == NULL){
+	if(!t){
 		return NULL;
 	}
 	
