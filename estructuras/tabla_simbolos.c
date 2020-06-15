@@ -1,8 +1,10 @@
 #include "tabla_simbolos.h"
 #include <string.h>
+#include <stdlib.h>
+#include <stdlib.h>
 
 //Agrega un argumento al final
-void append_arg(ARGS args, int arg) {
+/*void append_arg(ARGS *args, int arg) {
 	if (!args->head) {
 		args->head = args->tail = arg;
 	} else {
@@ -12,17 +14,16 @@ void append_arg(ARGS args, int arg) {
 	
 	args->tail->next = NULL;
 	args->num++;
-}
-
+}*/
 
 //Compara dos lista y devuelve 1 si son iguales, 0 si son diferentes
-/*int compare_args(ARGS a1, ARGS a2) {
+int compare_args(ARGS *a1, ARGS *a2) {
 	if (a1->num != a2->num) {
 		return 0;
 	}
 	
 	ARG *tmp1 = a1->head, *tmp2 = a2->head;
-	while (!!tmp1->next && !!tmp2->next) {
+	while (!!tmp1 && !!tmp2) {
 		if (tmp1->arg == tmp2->arg) {
 			tmp1 = tmp1->next;
 			tmp2 = tmp2->next;
@@ -31,11 +32,11 @@ void append_arg(ARGS args, int arg) {
 		}
 	}
 	
-	return tmp1->arg == tmp2->arg ? 1 : 0;
-}*/
+	return 1;
+}
 
 //Agrega al final de la tabla un nuevo simbolo
-void append_sym(SYMTAB t, SYM s) {
+void append_sym(SYMTAB *t, SYM *s) {
 	if (!t->head){
 		t->head = t->tail = s;
 	} else {
@@ -48,7 +49,7 @@ void append_sym(SYMTAB t, SYM s) {
 }
 
 // Deja vacia la tabla
-void clear_sym_tab(SYMTAB t) {
+void clear_sym_tab(SYMTAB *t) {
 	if (!!t) {
 		finish_sym(t->head);
 		t->head = t->tail = NULL;
@@ -57,17 +58,17 @@ void clear_sym_tab(SYMTAB t) {
 }
 
 // Ejecuta un pop sobre la pila de tablas de simbolos
-SYMTAB pop_st(SSTACK s) {
+/*SYMTAB pop_st(SSTACK *s) {
 	SYMTAB *tmp = s->top;
 	tmp->next = NULL;
 	SYMTAB popped = *tmp;
 	s->top = s->top->next;
 	finish_sym_tab(tmp);
 	return popped;
-}
+}*/
 
 // Ingresa una tabla a la pila de tablas de simbolos
-void push_st(SSTACK s, SYMTAB st) {
+/*void push_st(SSTACK *s, SYMTAB*st) {
 	if (!s->top) {
 		s->tail = s->top = st;
 	} else {
@@ -75,10 +76,10 @@ void push_st(SSTACK s, SYMTAB st) {
 		s->top = st;
 		s->top->next = tmp;
 	}
-}
+}*/
 
 // Retorna el apunador a un tipo ARGS
-ARGS init_args() {
+ARGS *init_args() {
 	ARGS *tmp = malloc(sizeof *tmp);
 	if (!tmp) {
 		return NULL;
@@ -90,7 +91,7 @@ ARGS init_args() {
 }
 
 // Reserva memoria para un tipo ARG y retorna el apuntador
-ARG init_arg(int dato) {
+ARG *init_arg(int dato) {
 	ARG *tmp = malloc(sizeof *tmp);
 	if (!tmp) {
 		return NULL;
@@ -101,7 +102,7 @@ ARG init_arg(int dato) {
 }
 
 // Reserva memoria para la pila
-SSTACK init_sym_tab_stack() {
+SSTACK *init_sym_tab_stack() {
 	SSTACK *tmp = malloc(sizeof *tmp);
 	if (!tmp) {
 		return NULL;
@@ -112,36 +113,38 @@ SSTACK init_sym_tab_stack() {
 }
 
 // Reserva memoria para una tabla de simbolos vacia
-SYMTAB init_sym tab() {
+SYMTAB *init_sym_tab() {
 	SYMTAB *tmp = malloc(sizeof *tmp);
 	if (!tmp) {
 		return NULL;
 	}
 	
-	tmp->head = tmp->tail = tmp->next = NULL;
+	tmp->head = tmp->tail = NULL;
+	tmp->next = NULL;
 	tmp->num = 0;
 	return tmp;
 }
 
 // Reserva memoria para un simbolo vacio
-SYM init_sym() {
+SYM *init_sym() {
 	SYM *tmp = malloc(sizeof *tmp);
 	if (!tmp) {
 		return NULL;
 	}
 	
-	tmp->args = tmp->next = NULL;
-	tmp->id = {'\0', };
+	tmp->args = NULL;
+	tmp->next = NULL;
+	strcpy(tmp->id, '\0');
 }
 
 // Libera la memoria para la pila
-void finish_sym_tab_stack(SSTACK s) {
+void finish_sym_tab_stack(SSTACK *s) {
 	finish_sym_tab(s->top);
 	free(s);
 }
 
 // Libera memoria para una tabla de simbolos
-void finish_sym_tab(SYMTAB st) {
+void finish_sym_tab(SYMTAB *st) {
 	if (!st) {
 		return;
 	}
@@ -152,7 +155,7 @@ void finish_sym_tab(SYMTAB st) {
 }
 
 // libera memoria para un simbolo
-void finish_sym(SYM s) {
+void finish_sym(SYM *s) {
 	if (!s) {
 		return;
 	}
@@ -162,7 +165,7 @@ void finish_sym(SYM s) {
 }
 
 // libera memoria para un arg
-void finish_arg(ARG a) {
+void finish_arg(ARG *a) {
 	if (!a) {
 		return;
 	}
@@ -172,18 +175,18 @@ void finish_arg(ARG a) {
 }
 
 // libera memoria para una lista ARGS
-void finish_args(ARGS a) {
+void finish_args(ARGS *a) {
 	finish_arg(a->head);
 	free(a);
 }
 
 // Imprime en pantalla la tabla de simbolos
-void print_tab(SYMTAB t) {
+/*void print_tab(SYMTAB *t) {
 	
-}
+}*/
 
-int getDir(SYMTAB T, char *id) {
-	SYM *tmp = busca_sym(T->head);
+int getDir(SYMTAB *T, char *id) {
+	SYM *tmp = busca_sym(T->head, id);
 	if(!tmp) {
 		return -1;
 	}
@@ -191,16 +194,16 @@ int getDir(SYMTAB T, char *id) {
 	return tmp->dir;
 }
 
-int getTipo(SYMTAB T, char *id) {
-	SYM *tmp = busca_sym(T->head);
+int getTipo(SYMTAB *T, char *id) {
+	SYM *tmp = busca_sym(T->head, id);
 	if(!tmp) {
 		return -1;
 	}
 	return tmp->tipo;
 }
 
-int getVar(SYMTAB T, char *id) {
-	SYM *tmp = busca_sym(T->head);
+int getVar(SYMTAB *T, char *id) {
+	SYM *tmp = busca_sym(T->head, id);
 	if(!tmp) {
 		return -1;
 	}
@@ -208,8 +211,8 @@ int getVar(SYMTAB T, char *id) {
 	return tmp->var;
 }
 
-ARGS getArgs(SYMTAB T, char *id) {
-	SYM *tmp = busca_sym(T->head);
+ARGS getArgs(SYMTAB *T, char *id) {
+	SYM *tmp = busca_sym(T->head, id);
 	if (!tmp) {
 		return;
 	}
@@ -217,8 +220,8 @@ ARGS getArgs(SYMTAB T, char *id) {
 	return *tmp->args;
 }
 
-int getNumArgs(SYMTAB T, char *id) {
-	SYM *tmp = busca_sym(T->head);
+int getNumArgs(SYMTAB *T, char *id) {
+	SYM *tmp = busca_sym(T->head, id);
 	if(!tmp) {
 		return -1;
 	}
@@ -226,7 +229,7 @@ int getNumArgs(SYMTAB T, char *id) {
 	return tmp->num;
 }
 
-SYM *busca_sym(SYM s, char *id) {
+SYM *busca_sym(SYM *s, char *id) {
 	if(!s) {
 		return NULL;
 	}
@@ -235,5 +238,5 @@ SYM *busca_sym(SYM s, char *id) {
 		return s;
 	}
 	
-	busca_sym(s->next);
+	return busca_sym(s->next, id);
 }
