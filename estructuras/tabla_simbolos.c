@@ -1,38 +1,32 @@
 #include "tabla_simbolos.h"
 #include <string.h>
 #include <stdlib.h>
-#include <stdlib.h>
+#include <stdio.h>
 
 //Agrega un argumento al final
-/*void append_arg(ARGS *args, int arg) {
-	if (!args->head) {
-		args->head = args->tail = arg;
-	} else {
-		args->tail->next = arg;
-		args->tail = arg;
+void append_arg(ARGS *args, int arg) {
+	ARG *argp = init_arg(arg);
+	if(!argp) {
+		exit(1);
 	}
-	
+	if (!args->head) {
+		args->head = args->tail = argp;
+	} else {
+		args->tail->next = argp;
+		args->tail = argp;
+	}
+
 	args->tail->next = NULL;
 	args->num++;
-}*/
+}
 
 //Compara dos lista y devuelve 1 si son iguales, 0 si son diferentes
 int compare_args(ARGS *a1, ARGS *a2) {
-	if (a1->num != a2->num) {
-		return 0;
-	}
-	
 	ARG *tmp1 = a1->head, *tmp2 = a2->head;
-	while (!!tmp1 && !!tmp2) {
-		if (tmp1->arg == tmp2->arg) {
-			tmp1 = tmp1->next;
-			tmp2 = tmp2->next;
-		} else {
-			return 0;
-		}
-	}
-	
-	return 1;
+	for( ; tmp1 && tmp2; tmp1 = tmp1->next, tmp2 = tmp2->next)
+		if(tmp1->arg != tmp2->arg) break;
+
+	return !(!!tmp1 || !!tmp2);
 }
 
 //Agrega al final de la tabla un nuevo simbolo
@@ -58,17 +52,17 @@ void clear_sym_tab(SYMTAB *t) {
 }
 
 // Ejecuta un pop sobre la pila de tablas de simbolos
-/*SYMTAB pop_st(SSTACK *s) {
+SYMTAB pop_st(SSTACK *s) {
 	SYMTAB *tmp = s->top;
 	tmp->next = NULL;
 	SYMTAB popped = *tmp;
 	s->top = s->top->next;
 	finish_sym_tab(tmp);
 	return popped;
-}*/
+}
 
 // Ingresa una tabla a la pila de tablas de simbolos
-/*void push_st(SSTACK *s, SYMTAB*st) {
+void push_st(SSTACK *s, SYMTAB*st) {
 	if (!s->top) {
 		s->tail = s->top = st;
 	} else {
@@ -76,7 +70,7 @@ void clear_sym_tab(SYMTAB *t) {
 		s->top = st;
 		s->top->next = tmp;
 	}
-}*/
+}
 
 // Retorna el apunador a un tipo ARGS
 ARGS *init_args() {
@@ -98,6 +92,7 @@ ARG *init_arg(int dato) {
 	}
 	
 	tmp->next = NULL;
+	tmp->arg = dato;
 	return tmp;
 }
 
