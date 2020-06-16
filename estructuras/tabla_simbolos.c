@@ -173,22 +173,17 @@ void finish_sym(SYM *s) {
 // libera memoria para un arg
 void finish_arg(ARG *a) {
 	if (!a) {
-		printf("Se llego al final, vamos de regreso\n");
 		return;
 	}
 	
 	finish_arg(a->next);
 	free(a);
-	printf("Se ha liberado %p\n", a);
 }
 
 // libera memoria para una lista ARGS
 void finish_args(ARGS *a) {
-	printf("Liberando %p\n", a);
 	finish_arg(a->head);
-	printf("Se han liberado los argumentos\n");
 	free(a);
-	printf("Se ha liberado %p\n", a);
 }
 
 // Imprime en pantalla la tabla de simbolos
