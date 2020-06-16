@@ -30,7 +30,7 @@ void clear_type_tab(TYPTAB *tt){
 }
 
 // Ejecuta un pop sobre la pila de tablas de tipos
-/*TYPTAB pop_st(TSTACK *s){
+TYPTAB pop_st(TSTACK *s){
     TYPTAB *tmp = s->top;
     s->top = s->top->next;
     tmp->next = NULL;
@@ -49,7 +49,7 @@ void push_st(TSTACK *s, TYPTAB *tt){
         s->top = tt;
         s->top->next = tmp;
     }
-}*/
+}
 
 // Reserva memoria para la pila
 TSTACK *init_type_tab_stack(){
@@ -151,7 +151,7 @@ int getNum(TYPTAB *T){
 }
 
 // imprime en pantalla la tabla de tipos
-/*void print_tab(TYPTAB *t){
+void print_tab(TYPTAB *t){
 	int i;
 	TYP *tmp = t->head;
 	printf("--------------------------------------------------------------------\n");
@@ -185,7 +185,7 @@ int getNum(TYPTAB *T){
     }
     printf("-------------------------------------------\n");
 	printf("\n");
-}*/
+}
 
 // Busca ID en una lista ligada
 TYP *busca_typ(TYP *t, int id){
