@@ -1,3 +1,6 @@
+#ifndef CUADRUPLAS_H
+#define CUADRUPLAS_H
+
 typedef struct cuad QUAD;
 
 struct cuad{
@@ -25,3 +28,4 @@ void finish_code(CODE *c); // Libera la memoria de la lista ligada del codigo
 
 void append_quad(CODE* C, QUAD *cd); // Agrega una cuadrupla al final de la lista
 
+#endif
