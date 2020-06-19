@@ -5,22 +5,23 @@ struct cuad{
     char *arg1;
     char *arg2;
     char *res;
-    CUAD *next;
+    QUAD *next;
 
 };
 
 typedef struct code{
     /* data */
-    CUAD *head;
-    CUAD *tail;
+    QUAD *head;
+    QUAD *tail;
 
 }CODE;
 
 
-CUAD *init_quad(); //
-void finish_quad(QUAD *c); //
+QUAD *init_quad(); // Reserva memoria para una cuadrupla
+void finish_quad(QUAD *c); // Libe ra la memoria de una cuadrupla
 
-CODE *init_code(); //
-void finish_code(CODE *c); //
+CODE *init_code(); // Reserva memoria para e l codigo
+void finish_code(CODE *c); // Libera la memoria de la lista ligada del codigo
 
-void append_quad(CODE* C, CUAD *cd);
+void append_quad(CODE* C, QUAD *cd); // Agrega una cuadrupla al final de la lista
+
