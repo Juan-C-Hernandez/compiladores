@@ -1,3 +1,6 @@
+#ifndef DATOS_H
+#define DATOS_H
+
 typedef struct arg ARG;
 
 struct arg{
@@ -70,3 +73,5 @@ typedef struct typ_stack{
     TYPTAB *top;
     TYPTAB *tail;
 } TSTACK;
+
+#endif
