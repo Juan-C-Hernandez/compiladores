@@ -56,7 +56,7 @@ void clear_sym_tab(SYMTAB *t) {
 }
 
 // Ejecuta un pop sobre la pila de tablas de simbolos
-SYMTAB pop_st(SSTACK *s){
+SYMTAB pop_st_sym(SSTACK *s){
 	/* FUNCIONA */
     SYMTAB *tmp = s->top;
     s->top = s->top->next;
@@ -68,7 +68,7 @@ SYMTAB pop_st(SSTACK *s){
 }
 
 // Ingresa una tabla a la pila de tablas de simbolos
-void push_st(SSTACK *s, SYMTAB*st) {
+void push_st_sym(SSTACK *s, SYMTAB*st) {
 	/* FUNCIONA */
 	if (!s->top) {
 		s->tail = s->top = st;
@@ -187,7 +187,7 @@ void finish_args(ARGS *a) {
 }
 
 // Imprime en pantalla la tabla de simbolos
-void print_tab(SYMTAB *t) {
+void print_tab_sym(SYMTAB *t) {
 	/* FUNCIONA */
 	printf("----------------------------------------------------\n");
 	printf("|%-29s %-20p|\n","Imprimiendo tabla de simbolos", t);
