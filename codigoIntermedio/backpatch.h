@@ -26,5 +26,6 @@ void append_index(LINDEX *l, INDEX *i); // Agrega un nodo indice al final de la 
 
 LINDEX *combinar(LINDEX l1, LINDEX l2); // retorna una lista ligada de la concatenacion de l1 con l2
 void backpath(CODE *c, LINDEX l, char *label); // Reemplaza label en cada aparicion de un indice en la  cuadruplas del codigo c
+LINDEX *init_list_index_empty();
 
 #endif
