@@ -30,7 +30,7 @@ void clear_type_tab(TYPTAB *tt){
 }
 
 // Ejecuta un pop sobre la pila de tablas de tipos
-TYPTAB pop_st(TSTACK *s){
+TYPTAB pop_st_typ(TSTACK *s){
     TYPTAB *tmp = s->top;
     s->top = s->top->next;
     tmp->next = NULL;
@@ -41,7 +41,7 @@ TYPTAB pop_st(TSTACK *s){
 }
 
 // ingresa una tabla a la pila de tabla de tipos
-void push_st(TSTACK *s, TYPTAB *tt){
+void push_st_typ(TSTACK *s, TYPTAB *tt){
     if(!s->top){
         s->tail = s->top = tt;
     } else{
@@ -151,7 +151,7 @@ int getNum(TYPTAB *T){
 }
 
 // imprime en pantalla la tabla de tipos
-void print_tab(TYPTAB *t){
+void print_tab_typ(TYPTAB *t){
 	int i;
 	TYP *tmp = t->head;
 	printf("--------------------------------------------------------------------\n");
