@@ -5,8 +5,8 @@
 void append_type(TYPTAB *TT, TYP *t); // Agrega al final de la tabla un nuevo tipo
 void clear_type_tab(TYPTAB *tt); // Deja vacia la tabla
 
-TYPTAB pop_st(TSTACK *s); // Ejecuta un pop sobre la pila de tablas de tipos
-void push_st(TSTACK *s, TYPTAB *tt); // ingresa una tabla a la pila de tabla de tipos
+TYPTAB pop_st_typ(TSTACK *s); // Ejecuta un pop sobre la pila de tablas de tipos
+void push_st_typ(TSTACK *s, TYPTAB *tt); // ingresa una tabla a la pila de tabla de tipos
 
 TSTACK *init_type_tab_stack(); // Reserva memoria para la pila
 TYPTAB *init_type_tab(); // Reserva memoria para una tabla de tipos e inserta los tipos nativos
@@ -19,7 +19,7 @@ void finish_typ(TYP *t); // libera memoria para un tipo
 int getTam(TYPTAB *t, int id); // Retorna el tamaño de un tipo
 TB getTipoBase(TYPTAB *t, int id); //retorna el tipo base
 char *getNombre(TYPTAB *t, int id); // Retorna el nombre de un tipo
-void print_tab(TYPTAB *t); // imprime en pantalla la tabla de tipos
+void print_tab_typ(TYPTAB *t); // imprime en pantalla la tabla de tipos
 
 TYP *busca_typ(TYP *t, int id); // Busca un id en una lista
 
