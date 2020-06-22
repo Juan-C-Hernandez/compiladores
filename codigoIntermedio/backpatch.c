@@ -1,6 +1,10 @@
 #include "backpatch.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include "cuadruplas.h"
+#include <string.h>
+
+void append_list(LINDEX *dest, LINDEX orig);
 
 // Reserva memoria para un nodo de indice
 INDEX *init_index() {
@@ -26,12 +30,22 @@ void finish_index(INDEX *i) {
 
 // Reserva memoria para la lista de indice se inserta el primero
 LINDEX *init_list_index(INDEX *i) {
+	LINDEX *list = init_list_index_empty();
+	if(!list) {
+		return NULL;
+	}
+	append_index(list, i);
+	return list;
+}
+
+LINDEX *init_list_index_empty() {
 	LINDEX *list = malloc(sizeof *list);
 	if(!list) {
 		return NULL;
 	}
-	list->head = list->tail = i;
-	list->tail->next = NULL;
+	
+	list->head = list->tail = NULL;
+	
 	return list;
 }
 
@@ -55,16 +69,30 @@ void append_index(LINDEX *l, INDEX *i) {
 
 // retorna una lista ligada de la concatenacion de l1 con l2 // nueva
 LINDEX *combinar(LINDEX l1, LINDEX l2) {
-	LINDEX *nueva = malloc(sizeof *nueva);
+	LINDEX *nueva = init_list_index_empty();
 	if(!nueva) {
 		return NULL;
 	}
 	
-	nueva->head = l1.head;
-	l1.tail->next = l2.head;
-	nueva->tail = l2.tail;
+	append_list(nueva, l1);
+	append_list(nueva, l2);
 	
 	return nueva;
+}
+
+void append_list(LINDEX *dest, LINDEX orig) {
+	INDEX *tmp = orig.head;
+	INDEX *nueva_tmp;
+	int len;
+
+	// Copia cada elemento de orig en dest
+	for(; tmp; tmp = tmp->next) {
+		nueva_tmp = init_index();
+		len = strlen(tmp->indice) + 1;
+		nueva_tmp->indice = malloc(len);
+		strcpy(nueva_tmp->indice, tmp->indice);
+		append_index(dest, nueva_tmp);
+	}
 }
 
 // Reemplaza label en cada aparicion de un indice en la cuadruplas del codigo c
