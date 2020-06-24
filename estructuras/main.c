@@ -31,7 +31,6 @@ void print_stack_sym(SSTACK *s){
     	}
     }
 }
-/*
 
 int main(int arc, char **argv){
 	printf("Ejecutando en: ");
@@ -261,4 +260,4 @@ int main(int arc, char **argv){
 	printf("Pila despues de clear_sym_tab\n");
 	print_stack_sym(pila);
 }
-*/
+
