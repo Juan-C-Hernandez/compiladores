@@ -1,4 +1,5 @@
 #include "tabla_tipos.h"
+#include "..\codigointermedio\tipos.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,7 +12,10 @@ void print_typ(TYP *tipo){
     }
 }
 
+TSTACK *pila_tabla_tipo;
+
 void print_stack_typ(TSTACK *s){
+	pila_tabla_tipo = init_type_tab_stack();
     TYPTAB *tmp = s->top;
     if(!tmp){
         printf("Nada que imprimir\n");

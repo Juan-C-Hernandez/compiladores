@@ -2,9 +2,9 @@
 #define TIPOS_H
 
 #include "cuadruplas.h"
-//#include "..\estructuras\tabla_tipos.h"
+#include "../estructuras/tabla_tipos.h"
 
-//extern TSTACK *pila_tabla_tipo;
+extern TSTACK *pila_tabla_tipo;
 
 /*
 *Recibe dos t ipo s , cada uno es su indice hacia la tabla de tipos en la cima de la pila
