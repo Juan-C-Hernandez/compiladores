@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void print_stack(SSTACK *s){
+void print_stack_sym(SSTACK *s){
     SYMTAB *tmp = s->top;
     printf("------------------------------------------------\n");
     if(!tmp){
@@ -15,12 +15,13 @@ void print_stack(SSTACK *s){
     } else{
         printf("Imprimiendo pila:\nTOP\n");
         while(tmp != NULL){
-        	print_tab(tmp);
+        	print_tab_sym(tmp);
         	printf("\n");
         	tmp = tmp->next;
     	}
     }
 }
+/*
 
 int main(int arc, char **argv){
     ARGS *args = init_args();
@@ -193,16 +194,16 @@ int main(int arc, char **argv){
 	SYMTAB *tabla_simbolos4 = init_sym_tab();
 	clear_sym_tab(tabla_simbolos4);
 	
-	push_st(pila, tabla_simbolos);
-	push_st(pila, tabla_simbolos2);
-	push_st(pila, tabla_simbolos3);
-	push_st(pila, tabla_simbolos4);
+	push_st_sym(pila, tabla_simbolos);
+	push_st_sym(pila, tabla_simbolos2);
+	push_st_sym(pila, tabla_simbolos3);
+	push_st_sym(pila, tabla_simbolos4);
 	printf("PILA\n");
-	print_stack(pila);
+	print_stack_sym(pila);
 	
-	SYMTAB p = pop_st(pila);
+	SYMTAB p = pop_st_sym(pila);
 	printf("\nPila despues de pop\n");
-	print_stack(pila);
+	print_stack_sym(pila);
 	
 	//char id[4] = "kjh";
 	//char id[2] = "x";
@@ -241,5 +242,6 @@ int main(int arc, char **argv){
 	
 	clear_sym_tab(tabla_simbolos);
 	printf("Pila despues de clear_sym_tab\n");
-	print_stack(pila);
+	print_stack_sym(pila);
 }
+*/

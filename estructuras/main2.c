@@ -3,22 +3,31 @@
 #include <stdlib.h>
 #include <string.h>
 
-void print_stack(TSTACK *s){
+void print_typ(TYP *tipo){
+    TYP *tmp = tipo;
+    while(tmp){
+        printf("ID: %d\nNombre: %s\nTam: %d\nMemoria %p\n\n", tmp->id, tmp->nombre, tmp->tam, tmp);
+        tmp = tmp->next;
+    }
+}
+
+void print_stack_typ(TSTACK *s){
     TYPTAB *tmp = s->top;
     if(!tmp){
         printf("Nada que imprimir\n");
     } else{
         printf("Imprimiendo pila:\n");
         while(tmp != NULL){
-        print_tab(tmp);
+        print_tab_typ(tmp);
         tmp = tmp->next;
     }
     }
 }
 
+
 int main(int arc, char **argv){
 
-    /* PRUEBA INIT */
+    // PRUEBA INIT
 	TSTACK *pila = init_type_tab_stack();
 	if(!pila){
 	    printf("Error al crear la pila\n");
@@ -31,7 +40,7 @@ int main(int arc, char **argv){
 	    return -1;
     }
 
-    /* PRUEBA DE TIPOS */
+    // PRUEBA DE TIPOS
     TYP *tipo1 = init_type();
     TYP *tipo2 = init_type();
     TYP *tipo3 = init_type();
@@ -52,9 +61,9 @@ int main(int arc, char **argv){
     print_typ(tipo3);
     printf("\n");
 
-    /* PRUEBA APPEND TABLAS */
+    // PRUEBA APPEND TABLAS
     printf("Imprimiendo tabla vacia\n");
-    print_tab(tabla);
+    print_tab_typ(tabla);
     printf("\n");
 
     append_type(tabla, tipo1);
@@ -66,10 +75,10 @@ int main(int arc, char **argv){
     append_type(tabla, tipo3);
     printf("Se salio de append, la lista tiene ahora %d elementos\n\n", getNum(tabla));
 
-    /* PRUEBA IMPRIMIR TABA */
-    print_tab(tabla);
+    // PRUEBA IMPRIMIR TABA 
+    print_tab_typ(tabla);
 
-    /* PRUEBA BUSQUEDAS */
+    // PRUEBA BUSQUEDAS 
     int id_a_buscar = 2;
     TYP *tipo_busqueda = busca_typ(tabla->head, id_a_buscar);
     printf("Resultado de busqueda de id %d:\n", id_a_buscar);
@@ -115,9 +124,9 @@ int main(int arc, char **argv){
     printf("\n");
     printf("\n");
 
-    /* PRUEBA PILA */
+    // PRUEBA PILA
     printf("Imprimiendo pila vacia\n");
-    print_stack(pila);
+    print_stack_typ(pila);
     printf("\n");
 
     TYPTAB *tabla2 = init_type_tab(); // INIT FUNCIONA
@@ -169,22 +178,23 @@ int main(int arc, char **argv){
     append_type(tabla3, tipo9);
     append_type(tabla3, tipo10);
 
-    push_st(pila, tabla);
-    push_st(pila, tabla2);
-    push_st(pila, tabla3);
+    push_st_typ(pila, tabla);
+    push_st_typ(pila, tabla2);
+    push_st_typ(pila, tabla3);
     printf("Imprimiendo pila\n");
-    print_stack(pila);
+    print_stack_typ(pila);
     printf("\n");
 
     clear_type_tab(tabla2);
     printf("Imprimiendo pila despues de limpiar tabla %p\n", tabla2);
-    print_stack(pila);
+    print_stack_typ(pila);
     printf("\n");
 
     printf("Pop a la pila\n");
-    TYPTAB popped = pop_st(pila);
+    TYPTAB popped = pop_st_typ(pila);
     printf("Imprimiendo pila despues de pop\n");
-    print_stack(pila);
+    print_stack_typ(pila);
     printf("\n");
-    print_tab(&popped);
+    printf("Elemento eliminado: \n");
+    print_tab_typ(&popped);
 }
