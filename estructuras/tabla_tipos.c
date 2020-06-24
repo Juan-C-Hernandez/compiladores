@@ -163,7 +163,7 @@ void print_tab_typ(TYPTAB *t){
 	    printf("--------------------------------------------------------------------\n");
     } else{
         for(i = 0; i < t->num; i++){
-            printf("|%10d|%13s|%5zu|%17p|", tmp->id, tmp->nombre, tmp->tam, tmp);
+            printf("|%10d|%13s|%5d|%17p|", tmp->id, tmp->nombre, tmp->tam, tmp);
             if(!tmp->next){
                 printf("%17s|\n", "NULL");
             } else{

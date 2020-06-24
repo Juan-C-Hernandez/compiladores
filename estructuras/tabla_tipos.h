@@ -19,6 +19,7 @@ void finish_typ(TYP *t); // libera memoria para un tipo
 int getTam(TYPTAB *t, int id); // Retorna el tamaño de un tipo
 TB getTipoBase(TYPTAB *t, int id); //retorna el tipo base
 char *getNombre(TYPTAB *t, int id); // Retorna el nombre de un tipo
+int getNum(TYPTAB *T);
 void print_tab_typ(TYPTAB *t); // imprime en pantalla la tabla de tipos
 
 TYP *busca_typ(TYP *t, int id); // Busca un id en una lista
