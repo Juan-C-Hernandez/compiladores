@@ -28,7 +28,7 @@ int compare_args(ARGS *a1, ARGS *a2) {
 		if(tmp1->arg != tmp2->arg) return 0;
 		//if(tmp1->arg != tmp2->arg) break;
 
-	return !(!!tmp1 || !!tmp2);
+	return !!!(tmp1 || tmp2);
 }
 
 //Agrega al final de la tabla un nuevo simbolo
