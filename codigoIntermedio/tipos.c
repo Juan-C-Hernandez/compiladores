@@ -1,5 +1,4 @@
 #include "tipos.h"
-//#include "..\estructuras\tabla_tipos.h"
 
 /*
 * Recibe dos tipos , cada uno es indice hacia la tabla de tipos en la cima de la pila

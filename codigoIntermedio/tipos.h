@@ -2,7 +2,14 @@
 #define TIPOS_H
 
 #include "cuadruplas.h"
+
+#if defined(_WIN32)
+#include "..\estructuras\tabla_tipos.h"
+#define OS 0
+#elif defined(__linux__) || defined(__unix__)
 #include "../estructuras/tabla_tipos.h"
+#define OS 1
+#endif
 
 extern TSTACK *pila_tabla_tipo;
 

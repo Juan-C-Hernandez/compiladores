@@ -1,8 +1,16 @@
 #include "tabla_tipos.h"
-#include "..\codigointermedio\tipos.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#if defined(_WIN32)
+#include "..\codigointermedio\tipos.h"
+#define OS 0
+#elif defined(__linux__) || defined(__unix__)
+#include "../codigointermedio/tipos.h"
+#define OS 1
+#endif
+
 
 void print_typ(TYP *tipo){
     TYP *tmp = tipo;
@@ -30,7 +38,14 @@ void print_stack_typ(TSTACK *s){
 
 
 int main(int arc, char **argv){
-
+	printf("Ejecutando en: ");
+	if(OS) {
+		printf("Linux o alguna variante de Unix\n");
+	} else {
+		printf("Windows\n");
+	}
+	
+	
     // PRUEBA INIT
 	TSTACK *pila = init_type_tab_stack();
 	if(!pila){

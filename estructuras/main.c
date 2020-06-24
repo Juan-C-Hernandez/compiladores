@@ -7,6 +7,16 @@
 #include <stdlib.h>
 #include <string.h>
 
+#if defined(_WIN32)
+#include "..\codigointermedio\tipos.h"
+#define OS 0
+#elif defined(__linux__) || defined(__unix__)
+#include "../codigointermedio/tipos.h"
+#define OS 1
+#endif
+
+TSTACK *pila_tabla_tipo;
+
 void print_stack_sym(SSTACK *s){
     SYMTAB *tmp = s->top;
     printf("------------------------------------------------\n");
@@ -24,6 +34,13 @@ void print_stack_sym(SSTACK *s){
 /*
 
 int main(int arc, char **argv){
+	printf("Ejecutando en: ");
+	if(OS) {
+		printf("Linux o alguna variante de Unix\n");
+	} else {
+		printf("Windows\n");
+	}
+
     ARGS *args = init_args();
 	ARGS *args1 = init_args();
 	ARGS *args2 = init_args();
